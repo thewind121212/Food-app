@@ -10,11 +10,17 @@ const Cart = props => {
     const hasItem = cartCtx.items.length > 0
 
 
-    //const cartItemRemoveHandler = id = {}
+    const cartItemRemoveHandler = id => {
+        cartCtx.removeItem(id)
+    }
     
-    //const cartItemAddHandler = item = {}
+    const cartItemAddHandler = item => {
+        cartCtx.addItem(item)
+    }
 
-    const cartItem =<ul className={classes['cart-items']}>{ cartCtx.items.map(item => <CartItem key={item.id} name={item.name} amount={item.amount} price={item.price} />)} </ul>
+    const cartItem =<ul className={classes['cart-items']}>{ cartCtx.items.map(item => <CartItem 
+       onRemove={cartItemRemoveHandler} key={item.id} id={item.id} name={item.name} amount={item.amount} price={item.price} onAdd={cartItemAddHandler} />)} </ul>
+
 
 
     return <Modal onClose={props.onHideCartHandler}>
